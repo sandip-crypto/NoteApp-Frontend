@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const fetchNotes = async () => {
     try {
-      const response = await axios.get(`${API_URL}/notes`);
+      const response = await axios.get(`${API_URL}/api/notes`);
       setNotes(response.data);
     } catch (error) {
       toast.error('Failed to fetch notes');
@@ -44,7 +44,7 @@ const Dashboard = () => {
   const handleDeleteNote = async (noteId) => {
     if (window.confirm('Are you sure you want to delete this note?')) {
       try {
-        await axios.delete(`${API_URL}/notes/${noteId}`);
+        await axios.delete(`${API_URL}/api/notes/${noteId}`);
         setNotes(notes.filter(note => note._id !== noteId));
         toast.success('Note deleted successfully');
       } catch (error) {
@@ -56,13 +56,13 @@ const Dashboard = () => {
   const handleSaveNote = async (noteData) => {
     try {
       if (editingNote) {
-        const response = await axios.put(`${API_URL}/notes/${editingNote._id}`, noteData);
+        const response = await axios.put(`${API_URL}/api/notes/${editingNote._id}`, noteData);
         setNotes(notes.map(note => 
           note._id === editingNote._id ? response.data : note
         ));
         toast.success('Note updated successfully');
       } else {
-        const response = await axios.post(`${API_URL}/notes`, noteData);
+        const response = await axios.post(`${API_URL}/api/notes`, noteData);
         setNotes([response.data, ...notes]);
         toast.success('Note created successfully');
       }
