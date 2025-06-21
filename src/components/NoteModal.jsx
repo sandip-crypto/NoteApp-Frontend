@@ -79,7 +79,7 @@ const NoteModal = ({ isOpen, onClose, onSave, note }) => {
                 value={formData.content}
                 onChange={handleChange}
                 placeholder="Write your note here..."
-                rows={12}
+                rows={5}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
                 required
               />
